@@ -2,14 +2,16 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
 import {charactersAPI} from './constants'
+import {CharactersContainer} from './CharactersContainer'
 const App = () => {
+
 const [characters, setCharacters] = useState([]);
 
 useEffect(() => {
-  axios.get(charactersAPI)
-  .then(success => setCharacters(success))
+  axios.get(`${charactersAPI}`)
+  .then(success => setCharacters(success.data.results))
   .catch(fail => console.log('fail'))
-}, [characters])
+}, [])
 
 console.log(characters)
 
@@ -20,6 +22,7 @@ console.log(characters)
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      <CharactersContainer characters={characters}/>
     </div>
   );
 }
