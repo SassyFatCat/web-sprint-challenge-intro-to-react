@@ -4,21 +4,22 @@ import {CharacterCard} from './CharacterCard';
 
 
 const Container = styled.div`
-    background: white;
+    background: transparent;
     display: flex;
     flex-direction: column;
     width: 80%;
-    border: 5px solid white;
     margin: 0 auto;
     border-radius: 7px;
 `;
 
-export const CharactersContainer = ({characters}) => {
+export const CharactersContainer = ({characters, searchRequest}) => {
 
 return (
     <Container>
-
-     {characters.flat().map((x, index) => {
+     {searchRequest === "" && characters.flat().map((x, index) => {
+        return <CharacterCard key={index} info={x} />
+    })}
+    {searchRequest !== "" && characters.flat().filter(p => p.name.includes(searchRequest)).map((x, index) => {
         return <CharacterCard key={index} info={x} />
     })}
     </Container>

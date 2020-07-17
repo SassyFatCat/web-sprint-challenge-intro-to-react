@@ -9,6 +9,7 @@ import styled from 'styled-components'
 const App = () => {
 const [characters, setCharacters] = useState([]);
 const [searchTerm, setSearchTerm] = useState("");
+const [searchRequest, setSearchRequest] = useState("");
 
 const AppContainer = styled.div`
 
@@ -17,7 +18,7 @@ const SearchBar = styled.div`
   display: flex;
   justify-content: center;
   align-items:center;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
 `;
 
 const TextInput = styled.input`
@@ -77,21 +78,13 @@ axios.get(charPageOne)
 //     .catch(fail => console.log('fail'))
 }, [])
 
-
-console.log(characters)
-
-  // Fetch characters from the API in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
-
   return (
     <AppContainer className="App">
-      <h1 className="Header">Characters</h1>
+      <h1 className="Header">Star Wars Characters</h1>
       <SearchBar>
-      <label><TextInput type="text" placeholder="Search" name="search" onChange={event => {setSearchTerm(event.target.value);}}></TextInput>
-            </label> 
+    
       </SearchBar>
-      <CharactersContainer characters={characters}/>
+      <CharactersContainer searchRequest={searchRequest} characters={characters}/>
     </AppContainer>
   );
 
