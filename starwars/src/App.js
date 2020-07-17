@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
-import {charPageOne, charPageTwo, charPageThree, charPageFour, charPageFive, charPageSix, charPageSeven, charPageeight, charPageEight} from './constants'
+import {charPageOne, charPageTwo, charPageThree, charPageFour, charPageFive, charPageSix, charPageSeven, charPageEight} from './constants'
 import {CharactersContainer} from './CharactersContainer';
 import styled from 'styled-components'
 
@@ -30,16 +30,6 @@ const TextInput = styled.input`
   &:focus {
     width: 200px;
     transition: width .5s ease-in-out;
-  }
-`;
-
-const IconSpan = styled.span`
-  &:hover {
-    cursor: pointer;
-  }
-  i {
-    font-size: 1.8rem;
-    color: white;
   }
 `;
 
@@ -80,6 +70,9 @@ axios.get(charPageEight)
   return (
     <AppContainer className="App">
       <h1 className="Header">Star Wars Characters</h1>
+      <SearchBar>
+        <TextInput placeholder="search"></TextInput>
+      </SearchBar>
       <CharactersContainer characters={characters}/>
     </AppContainer>
   );
