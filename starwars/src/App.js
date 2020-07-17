@@ -1,17 +1,82 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
-import {charactersAPI} from './constants'
-import {CharactersContainer} from './CharactersContainer'
-const App = () => {
+import {charPageOne, charPageTwo, charPageThree, charPageFour, charPageFive, charPageSix, charPageSeven, charPageeight, charPageEight} from './constants'
+import {CharactersContainer} from './CharactersContainer';
+import styled from 'styled-components'
 
+
+const App = () => {
 const [characters, setCharacters] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+
+const AppContainer = styled.div`
+
+`;
+const SearchBar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  margin-bottom: 4%;
+`;
+
+const TextInput = styled.input`
+  background: rgba(23, 23, 23, .7);
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  width: 100px;
+  transition: width .5s ease-in-out;
+  &:focus {
+    width: 200px;
+    transition: width .5s ease-in-out;
+  }
+`;
+
+const IconSpan = styled.span`
+  &:hover {
+    cursor: pointer;
+  }
+  i {
+    font-size: 1.8rem;
+    color: white;
+  }
+`;
 
 useEffect(() => {
-  axios.get(`${charactersAPI}`)
-  .then(success => setCharacters(success.data.results))
-  .catch(fail => console.log('fail'))
+axios.get(charPageOne)
+    .then(success => setCharacters([success.data.results]))
+    .catch(fail => console.log('fail'))
+
+// axios.get(charPageTwo)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageThree)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageFour)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageFive)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageSix)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageSeven)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
+
+// axios.get(charPageEight)
+//     .then(success => setCharacters(oldArray => [...oldArray, success.data.results]))
+//     .catch(fail => console.log('fail'))
 }, [])
+
 
 console.log(characters)
 
@@ -20,11 +85,16 @@ console.log(characters)
   // sync up with, if any.
 
   return (
-    <div className="App">
+    <AppContainer className="App">
       <h1 className="Header">Characters</h1>
+      <SearchBar>
+      <label><TextInput type="text" placeholder="Search" name="search" onChange={event => {setSearchTerm(event.target.value);}}></TextInput>
+            </label> 
+      </SearchBar>
       <CharactersContainer characters={characters}/>
-    </div>
+    </AppContainer>
   );
+
 }
 
 export default App;

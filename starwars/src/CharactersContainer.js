@@ -17,7 +17,8 @@ export const CharactersContainer = ({characters}) => {
 
 return (
     <Container>
-    {characters.map((x, index) => {
+
+     {characters.flat().map((x, index) => {
         return <CharacterCard key={index} info={x} />
     })}
     </Container>
