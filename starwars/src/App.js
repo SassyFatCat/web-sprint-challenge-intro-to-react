@@ -8,8 +8,7 @@ import styled from 'styled-components'
 
 const App = () => {
 const [characters, setCharacters] = useState([]);
-const [searchTerm, setSearchTerm] = useState("");
-const [searchRequest, setSearchRequest] = useState("");
+
 
 const AppContainer = styled.div`
 
@@ -81,10 +80,7 @@ axios.get(charPageEight)
   return (
     <AppContainer className="App">
       <h1 className="Header">Star Wars Characters</h1>
-      <SearchBar>
-    
-      </SearchBar>
-      <CharactersContainer searchRequest={searchRequest} characters={characters}/>
+      <CharactersContainer characters={characters}/>
     </AppContainer>
   );
 

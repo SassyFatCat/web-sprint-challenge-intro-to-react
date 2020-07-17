@@ -16,10 +16,7 @@ export const CharactersContainer = ({characters, searchRequest}) => {
 
 return (
     <Container>
-     {searchRequest === "" && characters.flat().map((x, index) => {
-        return <CharacterCard key={index} info={x} />
-    })}
-    {searchRequest !== "" && characters.flat().filter(p => p.name.includes(searchRequest)).map((x, index) => {
+     {characters.flat().map((x, index) => {
         return <CharacterCard key={index} info={x} />
     })}
     </Container>
