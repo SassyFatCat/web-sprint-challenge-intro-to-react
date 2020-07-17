@@ -1,0 +1,1 @@
+export const charactersAPI = 'https://swapi.py4e.com/api/people'
